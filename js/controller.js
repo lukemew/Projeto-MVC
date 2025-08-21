@@ -1,13 +1,10 @@
-let container= document.querySelector("container")
-let list= document.querySelector("list")
+let container= document.querySelector("#container")
+let list= document.querySelector("#list")
 
 imagesList.forEach(img => {
-    const listItem = document.createElement('li'); // Create a <li> element
-  listItem.textContent = item; // Set the text content of the <li>
-  list.appendChild(listItem);
+    const listItem = document.createElement('li'); // Cria um elemento da lista "li"
+    const image= document.createElement("img") // cria a imagem
+    image.src=img.url; // seta url da imagem
+    listItem.appendChild(image);
+    list.appendChild(listItem); // adiciona li na lista ul
 })
-for (element in imagesList) {
-    document.createElement(
-        img
-    )
-}
