@@ -1,12 +1,22 @@
-let container= document.querySelector("#container")
-let list= document.querySelector("#list")
+const select = document.querySelector("#select_tags") // pega o seletor
+setImages(imagesList) // seta as imagens uma primeira vez, para a página não iniciar vazia
 
-
-
-animaisList.forEach(img => {
-    const listItem = document.createElement('li'); // Cria um elemento da lista "li"
-    const image= document.createElement("img") // cria a imagem
-    image.src=img.url; // seta url da imagem
-    listItem.appendChild(image);
-    list.appendChild(listItem); // adiciona li na lista ul
+// quando o valor do select para uma das categorias, muda as imagens
+select.addEventListener("change", () => {
+    switch(select.value) {
+        case "tudo":
+            setImages(imagesList)
+            break;
+        case "animais":
+            setImages(animaisList)
+            break;
+        case "natureza":
+            setImages(naturezaList)
+            break;
+        case "cidade":
+            setImages(cidadeList)
+            break;
+        default:
+            setImages(imagesList)
+        }
 })
