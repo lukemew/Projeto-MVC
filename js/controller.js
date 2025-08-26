@@ -1,12 +1,62 @@
-let container= document.querySelector("#container")
-let list= document.querySelector("#list")
+const select = document.querySelector("#select_tags");
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
+const pageInfo = document.querySelector("#pageInfo");
 
+let currentList = imagesList; // lista atual exibida (muda com o filtro)
+let currentPage = 1;
+const itemsPerPage = 4;
 
+// Função para atualizar a tela
+function updateView() {
+    setImages(currentList, currentPage, itemsPerPage);
 
-animaisList.forEach(img => {
-    const listItem = document.createElement('li'); // Cria um elemento da lista "li"
-    const image= document.createElement("img") // cria a imagem
-    image.src=img.url; // seta url da imagem
-    listItem.appendChild(image);
-    list.appendChild(listItem); // adiciona li na lista ul
-})
+    // atualiza info de paginação
+    const totalPages = Math.ceil(currentList.length / itemsPerPage);
+    pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === totalPages || totalPages === 0;
+}
+
+// Inicializa com todas as imagens
+updateView();
+
+// Filtro por categoria
+select.addEventListener("change", () => {
+    switch (select.value) {
+        case "tudo":
+            currentList = imagesList;
+            break;
+        case "animais":
+            currentList = animaisList;
+            break;
+        case "natureza":
+            currentList = naturezaList;
+            break;
+        case "cidade":
+            currentList = cidadeList;
+            break;
+        default:
+            currentList = imagesList;
+    }
+
+    currentPage = 1; // sempre reinicia na página 1 ao trocar categoria
+    updateView();
+});
+
+// Botões de navegação
+prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        updateView();
+    }
+});
+
+nextBtn.addEventListener("click", () => {
+    const totalPages = Math.ceil(currentList.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        updateView();
+    }
+});
