@@ -4,6 +4,23 @@
   box-sizing:border-box;
 }
 
+#wrapper {
+  place-items: center;
+  height: 100vh;
+}
+
+#container {
+  width: 50vh;
+  height: 75vh;
+}
+
+#wrapper-select {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    margin-bottom: 10px;
+}
+
 #container ul {
     list-style: none;
     display: grid;
