@@ -16,4 +16,5 @@ function setImages(imagesList, currentPage = 1, itemsPerPage = 4) {
         listItem.appendChild(image);
         list.appendChild(listItem);
     });
+     container.scrollIntoView({ block: 'center' });
 }
