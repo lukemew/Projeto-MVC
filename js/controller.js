@@ -60,3 +60,13 @@ nextBtn.addEventListener("click", () => {
         updateView();
     }
 });
+
+    const barraPesquisa = document.getElementById('pesquisa');
+
+    barraPesquisa.addEventListener('input', () => {
+        const pesquisa = barraPesquisa.value.toLowerCase();
+        const imagensFiltradas = imagesList.filter(img => img.tags.some(tag => tag.toLowerCase().includes(pesquisa)));
+        currentList = imagensFiltradas;
+        currentPage = 1;
+        updateView();
+    });
